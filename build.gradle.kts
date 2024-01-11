@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.0"
     application
+    id("io.gitlab.arturbosch.detekt") version "1.23.3" // Use the latest version
 }
 
 group = "mate.academy"
@@ -24,4 +25,10 @@ kotlin {
 
 application {
     mainClass.set("MainKt")
+}
+
+detekt {
+    buildUponDefaultConfig = true // preconfigure defaults
+    allRules = false // activate all available (even unstable) rules.
+    baseline = file("$projectDir/config/baseline.xml") // a way of suppressing issues before introducing detekt
 }
